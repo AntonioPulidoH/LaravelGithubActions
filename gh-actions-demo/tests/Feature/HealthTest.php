@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class HealthTest extends TestCase
 {
-    public function health_endpoint_returns_ok()
+    public function test_health_endpoint_returns_ok()
     {
         $response = $this->get('/health');
 
