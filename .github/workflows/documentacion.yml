@@ -17,7 +17,10 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
       - name: Generate default Doxyfile
         run: doxygen -g Doxyfile
-
+      - name: Configure Doxyfile
+        run: |
+          sed -i 's|^INPUT .*|INPUT = .|' Doxyfile
+          sed -i 's|^RECURSIVE .*|RECURSIVE = YES|' Doxyfile
       - name: Generate docs with Doxygen
         run: doxygen Doxyfile
 
