@@ -1,0 +1,27 @@
+name: Doxygen
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install Doxygen
+        run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
+
+      - name: Generate docs with Doxygen
+        run: doxygen Doxyfile
+
+      # (Opcional) Subir los artefactos generados para descargarlos desde GitHub
+      - name: Upload Doxygen docs artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: doxygen-docs
+          path: docs/html
